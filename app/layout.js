@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Providers from "./providers";
 
 export const metadata = {
-  title: "NExt Js tutorial",
+  title: "NExt Js Task Project tutorial",
   description: "A tutorial for Next.js",
 };
 
