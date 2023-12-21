@@ -1,40 +1,40 @@
-"use client";
-import { editTask } from "@/utils/actions";
+'use client';
+import { editTask } from '@/utils/actions';
 
 const EditForm = ({ task }) => {
-  const { id, content, completed } = task;
+  const { id, completed, content } = task;
 
   return (
     <form
       action={editTask}
-      className="max-w-sm p-12 border border-base-300 roundend-lg"
+      className='max-w-sm p-12 border border-base-300 rounded-lg'
     >
-      <input type="hidden" name="id" value={id} />
+      <input type='hidden' name='id' value={id} />
+      {/* content */}
       <input
-        type="text"
+        type='text'
         required
         defaultValue={content}
-        name="content"
-        className="input input-bordered w-full"
+        name='content'
+        className='input input-bordered w-full'
       />
-
-      <div className="form-control my-4">
-        <label htmlFor="completed" className="cursor-pointer label">
-          <span className="label-text">Completed</span>
+      {/* completed */}
+      <div className='form-control my-4'>
+        <label htmlFor='completed' className='label cursor-pointer'>
+          <span className='label-text'>completed</span>
           <input
-            type="checkbox"
+            type='checkbox'
             defaultChecked={completed}
-            id="completed"
-            name="completed"
-            className="checkbox checkbox-primary checkbox-sm"
+            id='completed'
+            name='completed'
+            className='checkbox checkbox-primary checkbox-sm'
           />
         </label>
       </div>
-      <button type="submit" className="btn btn-primary btn-block btn-sm">
-        Update
+      <button type='submit' className='btn btn-primary btn-block btn-sm'>
+        edit
       </button>
     </form>
   );
 };
-
 export default EditForm;

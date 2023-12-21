@@ -1,13 +1,8 @@
 'use client';
 
-const error = () => {
-    return (
-        <div>
-            <h1 className="text-5xl mb-8 font-bold">
-                {error.message}
-                 There was an error....</h1>
-        </div>
-    )
-}
-
+const error = (error) => {
+  console.log(error);
+  // return <div>there was an error...</div>;
+  return <div>{error.error.message}</div>;
+};
 export default error;

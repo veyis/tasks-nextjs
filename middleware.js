@@ -1,9 +1,9 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
-export function middleware() {
-  return NextResponse.redirect(new URL("/request.url"));
+export function middleware(request) {
+  return NextResponse.redirect(new URL('/', request.url));
 }
 
 export const config = {
-  matcher: ["/about/:path*"],
+  matcher: ['/about/:path*'],
 };

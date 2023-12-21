@@ -1,55 +1,37 @@
 import Link from 'next/link';
-import Image from 'next/image';
 const url = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
-
-
-
+import drinkImg from './drink.jpg';
+import Image from 'next/image';
 const getSingleDrink = async (id) => {
-
-    const response = await fetch(`${url}${id}`);
-    if (!response.ok) {
-        throw new Error('Failed to fetch drink...')
-    }
-    const data = await response.json();
-    return data;
-
-}
-
-
+  const res = await fetch(`${url}${id}`);
+  if (!res.ok) {
+    throw new Error('Failed to fetch a drink...');
+  }
+  return res.json();
+};
 
 const SingleDrinkPage = async ({ params }) => {
-    const data = await getSingleDrink(params.id);
-    const title = data?.drinks[0]?.strDrink || 'Drink Not Found';
-    const imgSrc = data?.drinks[0]?.strDrinkThumb || '@/public/next.svg';    
-    
-    console.log(title,imgSrc);
-    
-    
-    return (
-        <div>
-            <Link href="/drinks" className='btn btn-primary mt-8 mb-12'>
-                Back to Drinks
-            </Link>
+  const data = await getSingleDrink(params.id);
+  const title = data?.drinks[0]?.strDrink;
+  const imgSrc = data?.drinks[0]?.strDrinkThumb;
 
-            <Image 
-  src={imgSrc} // Route of the image file
- 
-  width={300}  // example width
-  height={300} // example height
-  className='w-48 h-48 rounded-lg shadow-lg mb-4'
-    priority
+  return (
+    <div>
+      <Link href='/drinks' className='btn btn-primary mt-8 mb-12'>
+        back to drinks
+      </Link>
 
-    alt={title}
-/>
-
-    
-
-            <h1 className="text-4xl mb-8">{title}</h1>
-
-        </div>
-    ) 
-
-}
-
-export default SingleDrinkPage
-
+      <Image
+        src={imgSrc}
+        width={300}
+        height={300}
+        className='w-48 h-48 rounded-lg shadow-lg mb-4'
+        priority
+        alt={title}
+      />
+      {/* <Image src={drinkImg} className='w-48 h-48 rounded-lg' alt='drink' /> */}
+      <h1 className='text-4xl mb-8'>{title}</h1>
+    </div>
+  );
+};
+export default SingleDrinkPage;

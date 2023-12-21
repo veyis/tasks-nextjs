@@ -1,22 +1,22 @@
-"use client";
-import { createTaskCustom } from "@/utils/actions";
-// import { useFormStatus } from "react-dom";
-import { useFormState } from "@/utils/actions"; // Import the missing useFormState function
-import { useEffect } from "react";
-import { toast } from "react-toastify";
+'use client';
+import { createTaskCustom } from '@/utils/actions';
+import { useEffect } from 'react';
 
-// const SubmitBtn = () => {
-//   const { pending } = useFormStatus();
-//   return (
-//     <button
-//       type="submit"
-//       className="btn btn-primary join-item"
-//       disabled={pending}
-//     >
-//       {pending ? "please wait..." : "Create Task"}
-//     </button>
-//   );
-// };
+import { useFormStatus, useFormState } from 'react-dom';
+import toast from 'react-hot-toast';
+
+const SubmitBtn = () => {
+  const { pending } = useFormStatus();
+  return (
+    <button
+      type='submit'
+      className='btn btn-primary join-item'
+      disabled={pending}
+    >
+      {pending ? 'please wait...' : 'create task'}
+    </button>
+  );
+};
 
 const initialState = {
   message: null,
@@ -25,34 +25,28 @@ const initialState = {
 const TaskForm = () => {
   const [state, formAction] = useFormState(createTaskCustom, initialState);
   useEffect(() => {
-    if (state.message === "error") {
-      toast.errror("There was an error creating the task. Please try again.");
+    if (state.message === 'error') {
+      toast.error('there was an error');
       return;
     }
-    if (state.message === "success") {
-      toast.success("Task created successfully!");
-      return;
+    if (state.message) {
+      toast.success('task created');
     }
   }, [state]);
-
   return (
     <form action={formAction}>
-      {state.message ? <p className="mb-2">{state.message}</p> : null}
-
-      <div className="join w-full rounded-box">
+      {/* {state.message ? <p className='mb-2'>{state.message}</p> : null} */}
+      <div className='join w-full'>
         <input
-          type="text"
-          className="input input-bordered join-item w-full"
-          placeholder="Type here"
-          name="content"
+          type='text '
+          className='input input-bordered join-item w-full'
+          placeholder='type here'
+          name='content'
           required
         />
-        <button type="submit" className="btn btn-primary join-item">
-          Create Task
-        </button>
+        <SubmitBtn />
       </div>
     </form>
   );
 };
-
 export default TaskForm;

@@ -1,5 +1,6 @@
-"use client";
-import { Toaster } from "react-hot-toast";
+'use client';
+
+import { Toaster } from 'react-hot-toast';
 
 const Providers = ({ children }) => {
   return (
@@ -9,5 +10,4 @@ const Providers = ({ children }) => {
     </>
   );
 };
-
 export default Providers;
